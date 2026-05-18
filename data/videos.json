@@ -1,6 +1,22 @@
 [
   {
     "date": "2026-05-18",
+    "title": "Stochastic Non-Smooth Convex Optimization with Unbounded Gradients",
+    "arxiv_id": "2605.15522",
+    "category": "cs.AI",
+    "youtube_id": "PNXyCKhWKbo",
+    "language": "en"
+  },
+  {
+    "date": "2026-05-18",
+    "title": "Stochastic Non-Smooth Convex Optimization with Unbounded Gradients",
+    "arxiv_id": "2605.15522",
+    "category": "cs.AI",
+    "youtube_id": "3Afqisiw9E4",
+    "language": "cn"
+  },
+  {
+    "date": "2026-05-18",
     "title": "Stochastic Gradient Descent with Variance Reduction: A Unified Framework",
     "arxiv_id": "2505.12345",
     "category": "stat.ML",
