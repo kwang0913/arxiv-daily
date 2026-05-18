@@ -15,7 +15,7 @@
   </header>
 
   <main class="video-grid">
-    {{ $videos := sort hugo.Data.videos "date" "desc" }}
+    {{ $videos := sort .Site.Data.videos "date" "desc" }}
     {{ range $videos }}
     <article class="video-card">
       <div class="video-thumbnail" data-youtube-id="{{ .youtube_id }}">
