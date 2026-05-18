@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Site.Title }}</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">{{ .Site.Title }}</h1>
+    {{ with .Site.Params.subtitle }}
+    <p class="site-subtitle">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <main class="video-grid">
+    {{ $videos := sort hugo.Data.videos "date" "desc" }}
+    {{ range $videos }}
+    <article class="video-card">
+      <div class="video-thumbnail" data-youtube-id="{{ .youtube_id }}">
+        <img
+          src="https://img.youtube.com/vi/{{ .youtube_id }}/hqdefault.jpg"
+          alt="Video thumbnail for {{ .title }}"
+          loading="lazy"
+          class="thumbnail-img"
+        >
+        <div class="play-overlay">
+          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-meta">
+          <span class="video-date">{{ .date }}</span>
+          <span class="video-category">{{ .category }}</span>
+          <span class="video-lang {{ .language }}">
+            {{ if eq .language "zh" }}🇨🇳 中文{{ else }}🇬🇧 English{{ end }}
+          </span>
+        </div>
+        <h2 class="video-title">
+          <a href="https://arxiv.org/abs/{{ .arxiv_id }}" target="_blank" rel="noopener noreferrer">
+            {{ .title }}
+          </a>
+        </h2>
+        <p class="video-arxiv">
+          <a href="https://arxiv.org/abs/{{ .arxiv_id }}" target="_blank" rel="noopener noreferrer">
+            arXiv:{{ .arxiv_id }}
+          </a>
+        </p>
+      </div>
+    </article>
+    {{ end }}
+  </main>
+
+  <footer class="site-footer">
+    <p>Papers sourced from <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      document.querySelectorAll('.video-thumbnail').forEach(function(thumb) {
+        thumb.addEventListener('click', function() {
+          var youtubeId = this.getAttribute('data-youtube-id');
+          if (!youtubeId) return;
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(youtubeId) + '?autoplay=1&rel=0';
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.classList.add('youtube-iframe');
+          iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+          this.innerHTML = '';
+          this.appendChild(iframe);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+baseURL = 'https://arxiv-daily.pages.dev'
+locale = 'en-us'
+title = 'ArXiv Daily Papers'
+theme = ''
+
+[params]
+  subtitle = 'Daily Video Interpretations of Academic Papers'
+
+[markup.goldmark.renderer]
+  unsafe = true
